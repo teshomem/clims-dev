@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>CLIMS - {% block title %}CIGENE LIMS!{% endblock %}</title>
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/static/dist/css/custom.css" rel="stylesheet">
+    <link href="/static/docs/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="/static/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.cigene.no">CIGENE Laboratory Information System (CLIMS)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="/admin">Admin</a></li>
+                        <li><a href="/sample/show/">Home</a></li>
+                        <li><a href="#"> Hello {{ user.username }}!</a></li>
+                        <li><a href="/admin/password_change/">Change Password</a></li>
+                        <li><a href="{% url 'auth_logout' %}?next=/front/">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'registration_register' %}">Register Here</a></li>
+			<li><a href="{% url 'auth_login' %}">Login</a></li>
+                    {% endif %}
+
+              </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-1 sidebar">
+                {% block side_block %}{% endblock %}
+
+        </div>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-1 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Categories <span class="sr-only">(current)</span></a></li>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle">Barcode<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/barcode/">Delete</a></li>
+                <li><a href="/admin/front/barcode/">Search</a></li>
+                <li><a href="/barcode/show/">View</a></li>
+                <li class="divider"></li>
+                <li><a href="/admin/front/barcode/">Export</a></li>
+                <li><a href="/admin/front/barcode/import/">Import</a></li>
+                <li class="divider"></li>
+                <li><a href="http://10.209.0.244/barcode-template.xls">Template</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle">Customer<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/customer/add/">Add</a></li>
+                <li><a href="/admin/front/customer/">Delete</a></li>
+                <li><a href="/customer/show/">View</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle"> Projects <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/project/add/">Add</a></li>
+                <li><a href="/admin/front/project/">Delete</a></li>
+                <li><a href="/project/show/">View</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle"> Samples <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/sample/">Delete</a></li>
+                <li><a href="/admin/front/sample/">Search</a></li>
+                <li class="divider"></li>
+                <li><a href="/admin/front/sample/">Export</a></li>
+                <li><a href="/admin/front/sample/import/">Import</a></li>
+                <li class="divider"></li>
+                <li><a href="http://10.209.0.244/clims-template.xls">Template</a></li>
+            </ul>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle"> Sampletype <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/sampletype/add/">Add</a></li>
+                <li><a href="/admin/front/sampletype/">Delete</a></li>
+                <li><a href="/sampletype/show/">View</a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle">Species<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/species/add/">Add</a></li>
+                <li><a href="/admin/front/species/">Delete</a></li>
+                <li><a href="/species/show/">View</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle">Status<span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/status/add/">Add</a></li>
+                <li><a href="/admin/front/status/">Delete</a></li>
+                <li><a href="/status/show/">View</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xlarge dropdown-toggle"> Storage <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/front/storage/add/">Add</a></li>
+                <li><a href="/admin/front/storage/">Delete</a></li>
+                <li><a href="/storages/show/">View</a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+           <div>
+                {% block body_block %}{% endblock %} 
+                </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-2 col-md-offset-5 main">
+           <div>
+                {% block reg_block %}{% endblock %}
+           </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+           <div>
+                {% block sign_block %}{% endblock %}
+           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/static/dist/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="/static/docs/assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/static/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block title%}Login{%endblock%}
+
+{%block contentcolumn%}
+
+<link href="/static/docs/examples/signin/signin.css" rel="stylesheet">
+
+<div style="margin:0 auto;width:500px;">
+        <form method="post" action="/">
+        {% csrf_token %}
+		<table border="0" cellpadding="2" cellspacing="5">
+			<tr><td class="label">Username:</td>
+                                <td class="control"><input type="text" name="username"/></td>
+                        </tr>
+			<tr><td class="label">Password:</td>
+                                <td class="control"><input type="password" name="password"/></td>
+                        </tr>
+			<tr><td class="label">&nbsp;</td>
+                        	<td class="control"><input type="submit" value="Login" class="form_submit"/>
+                                        | <a href="/help#login">Forgot your username/password?</a>
+                                </td>
+                        </tr>
+		</table>
+        </form>
+{%endblock%}

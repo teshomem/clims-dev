@@ -1,0 +1,54 @@
+{% extends 'base2.html' %}
+
+        {% block show%}
+    </div>
+    <div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Sampletype</div>
+<table id="events-id2" data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-select-item-name="toolbar1" id="table-pagination" data-url="data2.json" data-height="400" data-pagination="true" data-search="true">
+<thead>
+<tr>
+  <th data-field="state" data-checkbox="true"></th>
+  <th data-field="Id" data-align="left" data-sortable="true">Id</th>
+  <th data-field="Sample Type" data-align="left" data-sortable="true">Project</th>
+  <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Item Operate</th>
+</tr>
+</thead>
+{% for b in obj %}
+<tr>
+  <td>{{ b.leave_empty }}</td>
+  <td>{{ b.id }}</td>
+  <td>{{ b.name }}</td>
+</tr>
+{% endfor %}
+</table>
+<script>
+    function operateFormatter(value, row, index) {
+        return [
+            '</a>',
+            '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+                '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>',
+            '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .edit': function (e, value, row, index) {
+            alert('You click edit icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .remove': function (e, value, row, index) {
+            alert('You click remove icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        }
+    };
+</script>
+ </div>
+ </div>
+
+ </div>
+ {% endblock %}
+

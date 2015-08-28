@@ -1,0 +1,70 @@
+{% extends 'base2.html' %}
+
+        {% block show %}
+    </div>
+    <div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Sample(s)</div>
+<table id="events-id2" data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-select-item-name="toolbar1" id="table-pagination" data-url="data2.json" data-height="400" data-pagination="true" data-search="true">
+<thead>
+<tr>
+  <th data-field="state" data-checkbox="true"></th>
+  <th data-field="Id" data-align="left" data-sortable="true">Id</th>
+  <th data-field="Barcode" data-align="left" data-sortable="true">Barcode</th>
+  <th data-field="Project" data-align="left" data-sortable="true">Project</th>
+  <th data-field="Customer" data-align="left" data-sortable="true">Customer</th>
+  <th data-field="Species" data-align="left" data-sortable="true">Species</th>
+  <th data-field="Customer Plate" data-align="left" data-sortable="true">Customer Plate</th>
+  <th data-field="Customer Sample" data-align="left" data-sortable="true">Customer Sample</th>
+  <th data-field="Wellposition" data-align="left" data-sortable="true">Wellposition</th>
+  <th data-field="Concentration" data-align="left" data-sortable="true">Concentration</th>
+  <th data-field="Volume" data-align="left" data-sortable="true">Volume</th>
+  <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Item Operate</th>
+</tr>
+</thead>
+{% for b in obj %}
+<tr>
+  <td>{{ b.leave_empty }}</td>
+  <td>{{ b.id }}</td>
+  <td>{{ b.barcode }}</td>
+  <td>{{ b.project }}</td>
+  <td>{{ b.customer }}</td>
+  <td>{{ b.species }}</td>
+  <td>{{ b.customer_plate}}</td>
+  <td>{{ b.customer_sample}}</td>
+  <td>{{ b.wellposition}}</td>
+  <td>{{ b.concentration}}</td>
+  <td>{{ b.volume}}</td>
+</tr>
+{% endfor %}
+</table>
+<script>
+    function operateFormatter(value, row, index) {
+        return [
+            '</a>',
+            '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+                '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>',
+            '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+                '<i class="glyphicon glyphicon-remove"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .edit': function (e, value, row, index) {
+            alert('You click edit icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .remove': function (e, value, row, index) {
+            alert('You click remove icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        }
+    };
+</script>
+ </div>
+ </div>
+
+ </div>
+ {% endblock %}
+

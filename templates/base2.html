@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About | Bootstrap 3.x Admin Theme</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap Docs -->
+        <link href="http://getbootstrap.com/docs-assets/css/docs.css" rel="stylesheet" media="screen">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" media="screen" href="/static/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" media="screen" href="/static/dist/css/bootstrap-theme.min.css">
+
+        <!-- Bootstrap Admin Theme -->
+        <link rel="stylesheet" media="screen" href="/static/dist/css/bootstrap-admin-theme.css">
+        <link rel="stylesheet" media="screen" href="/static/dist/css/bootstrap-admin-theme-change-size.css">
+        <!-- Bootstrap -->
+        <link href="/static/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
+
+        <!-- Custom styles -->
+        <style type="text/css">
+.navbar-default {
+  background-color: #427586;
+  border-color: #e7e7e7;
+}
+.nav.navbar-nav.navbar-right li a {
+    color: white;
+  }
+   .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #427586;
+    color:#ffffff;
+  }
+}
+            @font-face {
+                font-family: Ubuntu;
+                src: url('fonts/Ubuntu-Regular.ttf');
+                
+            }
+            .bs-docs-masthead{
+                background-color: #6f5499;
+                background-image: linear-gradient(to bottom, #563d7c 0px, #6f5499 100%);
+                background-repeat: repeat-x;
+            }
+            .bs-docs-masthead{
+                padding: 0;
+            }
+            .bs-docs-masthead h1{
+                color: #fff;
+                font-size: 40px;
+                margin: 0;
+                padding: 34px 0;
+                text-align: center;
+            }
+            .bs-docs-masthead a:hover{
+                text-decoration: none;
+            }
+            .meritoo-logo a{
+                background-color: #fff;
+                border: 1px solid rgba(66, 139, 202, 0.4);
+                display: block;
+                font-family: Ubuntu;
+                padding: 22px 0;
+                text-align: center;
+            }
+            .meritoo-logo a,
+            .meritoo-logo a:hover,
+            .meritoo-logo a:focus{
+                text-decoration: none;
+            }
+            .meritoo-logo a img{
+                display: block;
+                margin: 0 auto;
+            }
+            .meritoo-logo a span{
+                color: #4e4b4b;
+                font-size: 18px;
+            }
+            .row-urls{
+                margin-top: 4px;
+            }
+            .row-urls .col-md-6{
+                text-align: center;
+            }
+            .row-urls .col-md-6 a{
+                font-size: 14px;
+            }
+        </style>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+           <script type="text/javascript" src="js/html5shiv.js"></script>
+           <script type="text/javascript" src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="bootstrap-admin-with-small-navbar">
+        <!-- small navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top bootstrap-admin-navbar-sm" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+				{% if user.is_authenticated %}
+                                <li>
+                                    <a href="/admin">Go to Admin Panel <i class="glyphicon glyphicon-share-alt"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" role="button" class="dropdown-toggle" data-hover="dropdown"> <i class="glyphicon glyphicon-user"></i> Hello {{ user.username }}! <i class="caret"></i></a>
+                                    <ul class="dropdown-menu">
+					<li><a href="/admin/password_change/">Change Password</a></li>
+                                        <li role="presentation" class="divider"></li>
+					<li><a href="{% url 'auth_logout' %}?next=/front/">Logout</a></li>
+				 {% else %}
+					<li><a href="{% url 'registration_register' %}">Register Here</a></li>
+					<li><a href="{% url 'auth_login' %}">Login</a></li>
+
+				{% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- main / large navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top bootstrap-admin-navbar bootstrap-admin-navbar-under-small" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse main-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/about">About</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Barcode <b class="caret"></b></a>
+ 			    <ul class="dropdown-menu">
+                		<li><a href="/admin/front/barcode/">Delete</a></li>
+                		<li><a href="/admin/front/barcode/">Search</a></li>
+				<li><a href="/barcode/show/">View</a></li>
+				<li class="divider"></li>
+				<li><a href="/admin/front/barcode/">Export</a></li>
+				<li><a href="/admin/front/barcode/import/">Import</a></li>
+				<li class="divider"></li>
+				<li><a href="http://10.209.0.223/barcode-template.xls">Template</a></li>
+			    </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Customer <b class="caret"></b></a>
+			 <ul class="dropdown-menu">
+				<li><a href="/admin/front/customer/add/">Add</a></li>
+				<li><a href="/admin/front/customer/">Delete</a></li>
+				<li><a href="/customer/show/">View</a></li>
+			    </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Sample <b class="caret"></b></a>
+ 			    <ul class="dropdown-menu">
+                		<li><a href="/admin/front/sample/">Delete</a></li>
+                		<li><a href="/admin/front/sample/">Search</a></li>
+				<li><a href="/sample/show/">View</a></li>
+				<li class="divider"></li>
+				<li><a href="/admin/front/sample/">Export</a></li>
+				<li><a href="/admin/front/sample/import/">Import</a></li>
+				<li class="divider"></li>
+				<li><a href="http://10.209.0.223/clims-template.xls">Template</a></li>
+			    </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Sampletype <b class="caret"></b></a>
+			 <ul class="dropdown-menu">
+				<li><a href="/admin/front/sampletype/add/">Add</a></li>
+				<li><a href="/admin/front/sampletype/">Delete</a></li>
+				<li><a href="/sampletype/show/">View</a></li>
+			    </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Species <b class="caret"></b></a>
+			 <ul class="dropdown-menu">
+				<li><a href="/admin/front/species/add/">Add</a></li>
+				<li><a href="/admin/front/species/">Delete</a></li>
+				<li><a href="/species/show/">View</a></li>
+			    </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Status <b class="caret"></b></a>
+			 <ul class="dropdown-menu">
+				<li><a href="/admin/front/status/add/">Add</a></li>
+				<li><a href="/admin/front/status/">Delete</a></li>
+				<li><a href="/status/show/">View</a></li>
+			    </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Storage <b class="caret"></b></a>
+			 <ul class="dropdown-menu">
+				<li><a href="/admin/front/storage/add/">Add</a></li>
+				<li><a href="/admin/front/storage/">Delete</a></li>
+				<li><a href="/storage/show/">View</a></li>
+			    </ul>
+                        </li>
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </div><!-- /.container -->
+        </nav>
+
+            <!-- left, vertical navbar & content -->
+            <div class="row">
+                <!-- left, vertical navbar -->
+                <div class="col-md-2 bootstrap-admin-col-left">
+                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+                            <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> CLIMS</a>
+                        </li>
+                    </ul>
+                </div>
+
+{% block about %} {% endblock %}
+{% block show %} {% endblock %}
+{% block title %} {% endblock %}
+{% block content %} {% endblock %}
+
+        <div class="footer" ALIGN=CENTER>
+<p> &copy; 2015 <a href="http://cigene.no" target="_blank">CIGENE</a></p>
+        </div>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/static/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/dist/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="/static/dist/js/bootstrap-admin-theme-change-size.js"></script>
+        <script src="/static/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    </body>
+</html>
