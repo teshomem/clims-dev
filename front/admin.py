@@ -73,7 +73,8 @@ class SampleResource(resources.ModelResource):
     class Meta:
         model = Sample
         fields = ('id', 'barcode', 'barcode', 'barcode_id', 'project', 'customer', 'species', 'storage', 'sampletype', 'customer_plate', 'customer_sample', 'plate_position',  'concentration', 'volume', 'status', 'comment','modified_by')
-        value_overrides = ("barcode_id", "project_id", "customer", "species", "storage", "status", "sampletype")
+        #value_overrides = ("barcode_id", "project_id", "customer", "species", "storage", "status", "sampletype")
+        value_overrides = ("barcode_id", "project", "species", "storage", "status", "sampletype")
 
 class SampleAdmin(ImportExportActionModelAdmin):
     resource_class = SampleResource
